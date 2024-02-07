@@ -6,9 +6,7 @@
     <section id="room-name-wrapper">
         <p>Room Name: <span id="room-name"></span></p>
     </section>
-
     <section id="video-streams"></section>
-
     <section id="controls-wrapper">
         <div class="icon-wrapper">
             <img class="control-icon" id="mic-btn" src="{% static 'images/microphone.svg' %}" />
@@ -21,10 +19,40 @@
         <div class="icon-wrapper">
             <img class="control-icon" id="leave-btn" src="{% static 'images/leave.svg' %}" />
         </div>
-    </section>
+        <div id="emotion-predictions">Predicted Emotions: Loading..</div>
+        <div id="temp"></div>
+    </section>  
 </main>
 
 
 <script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.8.0.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/streams.js' %}" ></script>
+<!-- Your HTML and JavaScript code -->
+<script>
+    function captureAndSendScreenshot() {
+        // Capture screenshot using html2canvas
+        html2canvas(document.getElementById('video-streams')).then(function(canvas) {
+            var base64Screenshot = canvas.toDataURL('image/png');
+
+          // Send the base64 data to the server using Ajax
+          $.ajax({
+                url: "{% url 'capture_and_process' %}",
+                type: "POST",
+                data: { screenshot: base64Screenshot },
+                success: successFunc,
+                error: errorFunc
+          });
+       });
+    }
+
+    function successFunc(response) {
+        document.getElementById("emotion-predictions").innerHTML = response.emotions;
+    }
+
+    function errorFunc() {
+        alert('Error capturing and processing.');
+    }
+    setInterval(captureAndSendScreenshot, 1000);
+</script>
+
 {% endblock content %}
