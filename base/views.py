@@ -6,6 +6,8 @@ from agora_token_builder import RtcTokenBuilder
 from .models import RoomMember
 import json
 from django.views.decorators.csrf import csrf_exempt                                     
+import requests
+from io import BytesIO
 from PIL import Image
 from .emotions import predict_emotion
 import base64
@@ -21,8 +23,8 @@ def room(request):
 
 
 def getToken(request):
-    appId = "17f117a02707484fac6aeadde80c9eb2"
-    appCertificate = "2850729ff6b6468aa5d8cdf34e4248f1"
+    appId = "1f41b377b05d47898f70f49ad50cde6b"
+    appCertificate = "f4d5a92e98254e7490ce263e76920dd6"
     channelName = request.GET.get('channel')
     uid = random.randint(1, 230)
     expirationTimeInSeconds = 3600
@@ -72,7 +74,6 @@ def deleteMember(request):
 @csrf_exempt
 def capture_and_process(request): 
     if request.method == 'POST':
-        print("inside 2")
         base64_screenshot = request.POST.get('screenshot')
         binary_data = base64.b64decode(base64_screenshot.split(',')[1]) 
         image = np.array(Image.open(io.BytesIO(binary_data)))
