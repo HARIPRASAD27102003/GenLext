@@ -3,3 +3,7 @@ asgiref==3.4.1
 Django==4.0.1
 sqlparse==0.4.2
 tzdata==2021.5
+opencv-python==4.9.0.80
+Pillow==10.2.0
+keras==2.15.0
+tensorflow==2.15.0

@@ -7,12 +7,12 @@ A Group video calling application using the Agora Web SDK with a Django backend.
 
 #### 1 - Clone repo
 ```
-git clone https://github.com/divanov11/mychat
+git clone https://github.com/sreehas-2/GenLext
 ```
 
 #### 2 - Install requirements
 ```
-cd mychat
+cd GenLext
 pip install -r requirements.txt
 ```
 
@@ -41,5 +41,3 @@ const APP_ID = 'YOUR APP ID'
 ```
 python manage.py runserver
 ```
-
-

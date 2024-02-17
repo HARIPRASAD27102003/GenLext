@@ -33,7 +33,7 @@ def predict_emotion(input_screenshot_array):
     gray_screenshot = cv2.cvtColor(input_screenshot_array, cv2.COLOR_BGR2GRAY)
 
     # Find faces in the input screenshot
-    face_cascade = cv2.CascadeClassifier('base\haarcascade_frontalface_default.xml')
+    face_cascade = cv2.CascadeClassifier('/Users/hariprasad/Documents/GenLext/base/haarcascade_frontalface_default.xml')
     faces = face_cascade.detectMultiScale(gray_screenshot, scaleFactor=1.3, minNeighbors=5)
 
     if len(faces) == 0:

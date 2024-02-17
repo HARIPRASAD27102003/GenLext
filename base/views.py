@@ -6,13 +6,14 @@ from agora_token_builder import RtcTokenBuilder
 from .models import RoomMember
 import json
 from django.views.decorators.csrf import csrf_exempt                                     
-import requests
+# import requests
 from io import BytesIO
 from PIL import Image
 from .emotions import predict_emotion
 import base64
 import io
 import numpy as np
+
 # Create your views here.
 
 def lobby(request):
